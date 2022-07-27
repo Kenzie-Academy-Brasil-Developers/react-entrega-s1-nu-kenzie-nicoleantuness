@@ -4,7 +4,7 @@ import TotalMoney from "../TotalMoney";
 function Form({ listTransactions, setListTransactions, setFilter }) {
   const [description, setDescription] = useState("");
   const [valueInput, setValueInput] = useState("");
-  const [selectInput, setSelectInput] = useState("");
+  const [selectInput, setSelectInput] = useState("Entrada");
 
   return (
     <main>
@@ -54,14 +54,14 @@ function Form({ listTransactions, setListTransactions, setFilter }) {
                   value: parseInt(valueInput),
                 },
               ]);
-             /*  setFilter([
+              setFilter([
                 ...listTransactions,
                 {
                   description: description,
                   type: selectInput,
                   value: parseInt(valueInput),
                 },
-              ]); */
+              ]);
             }}
           >Inserir valor</button>
         </form>
