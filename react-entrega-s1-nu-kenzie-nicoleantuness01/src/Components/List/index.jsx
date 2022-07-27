@@ -1,20 +1,20 @@
 import Cards from "../Card/index.jsx";
-/* import CardVazio from "../Card/CardVazio.jsx" */
+import CardVazio from "../Card/CardVazio.jsx"
 
 
 function List({ listTransactions, setListTransactions, filter, setFilter}) {
  
   function filterTodos() {
-    setFilter([])
+    setFilter(listTransactions.filter((elem) => elem.type === "Entrada" || elem.type === "Saida"))
   }
 
   function filterEntradas() {
-    setFilter(listTransactions.filter((elem) => elem.type === "Entrada"))
+    setFilter(listTransactions.filter((elem) => elem.type !== "Saida"))
+    console.log(listTransactions)
    }
 
    function filterSaidas() {
     setFilter(listTransactions.filter((elem) => elem.type === "Saida"))  
-    console.log(listTransactions)
    }
 
   return (
@@ -28,14 +28,16 @@ function List({ listTransactions, setListTransactions, filter, setFilter}) {
         </div>
       </section>
       <ul>
-        {
-          filter.length > 0 ? (
-            filter.map((transaction, index) => 
-          (<Cards transaction={transaction} key={index} />)
-          )):(
-            listTransactions.map((transaction, index) => 
-          (<Cards transaction={transaction} key={index} />)
-          ))
+        
+       {/*  {(filter.map((transaction, index) => 
+        (<Cards transaction={transaction} key={index} />)
+        ))} */}
+
+      { 
+         listTransactions.length && filter.length > 0  ?
+         filter.map((transaction, index) => 
+        (<Cards transaction={transaction} key={index} />)
+        ) : (<CardVazio/>)
         }
         
       </ul>
